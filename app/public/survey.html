@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FriendFinder</title>
+    <script src="https://use.fontawesome.com/1fba92214c.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -27,21 +27,113 @@
         </form>
         <hr>
         <h3>Question 1</h3>
-        <h4>What is your favorite color?</h4>
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select an option
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li>1 (Strongly disagree</li>
-                <li>2 hey</li>
-                <li>3 wassup</li>
-                <li>4 test</li>
-                <li>5 (Strongly agree)</li>
-            </ul>
-        </div>
+        <h4>Do you enjoy long walks on the beach?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 2</h3>
+        <h4>Do you like sports?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 3</h3>
+        <h4>Do you like to travel?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 4</h3>
+        <h4>Is sarcasm your first language?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 5</h3>
+        <h4>Do you enjoy chips and salsa?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 6</h3>
+        <h4>Are you a music fanatic?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 7</h3>
+        <h4>Do you love Razor scooters?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 8</h3>
+        <h4>In your free time, do you SkipIt?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 9</h3>
+        <h4>Would you like a trampoline?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <h3>Question 10</h3>
+        <h4>Do you love beer?</h4>
+        <select>
+            <option value="" disabled selected>Select an option:</option>
+            <option value=1>1 (Strongly disagree)</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5 (Strongly agree)</option>
+        </select>
+        <br><br>
+        <button type="button" class="btn btn-primary"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Submit</button>
+        <br><br>
+        <footer class="footer">
+            <p>
+                <a href="/api/friends">API Friends List</a>
+            </p>
+        </footer>
     </div>
-<script type="text/javascript">
-    $('.dropdown-toggle').dropdown()
-</script>
 </body>
 </html>
