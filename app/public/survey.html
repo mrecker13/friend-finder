@@ -8,8 +8,9 @@
     <title>FriendFinder</title>
     <script src="https://use.fontawesome.com/1fba92214c.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+        crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
         <hr>
         <h3>Question 1</h3>
         <h4>Do you enjoy long walks on the beach?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -38,7 +39,7 @@
         </select>
         <h3>Question 2</h3>
         <h4>Do you like sports?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -48,7 +49,7 @@
         </select>
         <h3>Question 3</h3>
         <h4>Do you like to travel?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -58,7 +59,7 @@
         </select>
         <h3>Question 4</h3>
         <h4>Is sarcasm your first language?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -68,7 +69,7 @@
         </select>
         <h3>Question 5</h3>
         <h4>Do you enjoy chips and salsa?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -78,7 +79,7 @@
         </select>
         <h3>Question 6</h3>
         <h4>Are you a music fanatic?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -88,7 +89,7 @@
         </select>
         <h3>Question 7</h3>
         <h4>Do you love Razor scooters?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -98,7 +99,7 @@
         </select>
         <h3>Question 8</h3>
         <h4>In your free time, do you SkipIt?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -108,7 +109,7 @@
         </select>
         <h3>Question 9</h3>
         <h4>Would you like a trampoline?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -118,7 +119,7 @@
         </select>
         <h3>Question 10</h3>
         <h4>Do you love beer?</h4>
-        <select>
+        <select class="questions">
             <option value="" disabled selected>Select an option:</option>
             <option value=1>1 (Strongly disagree)</option>
             <option value=2>2</option>
@@ -126,14 +127,79 @@
             <option value=4>4</option>
             <option value=5>5 (Strongly agree)</option>
         </select>
-        <br><br>
-        <button type="button" class="btn btn-primary"><i class="fa fa-check-circle-o" aria-hidden="true"></i> Submit</button>
-        <br><br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-primary" id="survey-btn">
+            <i class="fa fa-check-circle-o" aria-hidden="true"></i> Submit</button>
+        <br>
+        <br>
         <footer class="footer">
             <p>
                 <a href="/api/friends">API Friends List</a>
             </p>
         </footer>
     </div>
+    <div id="results-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">
+                        <strong>Best Match</strong>
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <h2 id="match-name"></h2>
+                    <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
+
+<script type="text/javascript">
+
+    $("#survey-btn").on("click", function () {
+        event.preventDefault();
+
+        var scoreArray = [];
+        $.each($(".questions option:selected"), function () {
+            scoreArray.push($(this).val());
+        });
+
+        var newFriend = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            scores: scoreArray
+        };
+
+        $.post("/api/friends", newFriend)
+            .then(function (data) {
+                // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                $("#match-name").text(data.name);
+                $("#match-img").attr("src", data.photo);
+                $("#match-img").attr("style", "width:300px;height:400px")
+
+                // Show the modal with the best match
+                $("#results-modal").modal("toggle");
+            });
+
+        $('.questions option').prop('selected', function () {
+            return this.defaultSelected;
+        });
+        $("#name").val("");
+        $("#photo").val("");
+
+    })
+
+    function chooseMatch() {
+
+    }
+
+</script>
